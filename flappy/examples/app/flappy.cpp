@@ -16,7 +16,7 @@ void Flappy::initializeGL(GLuint program) {
   m_translation = glm::vec2(0);
   m_init.x = -0.75;
   m_init.y = -0.85;
-  m_gravity = -0.0000005;
+  m_gravity = -0.00005;
   //m_init.y = 0;
   m_translation.x = m_init.x;
   m_translation.y = m_init.y;
@@ -167,7 +167,7 @@ void Flappy::terminateGL() {
 void Flappy::update(const GameData &gameData) {
   if (gameData.m_input[static_cast<size_t>(Input::Up)] || gameData.m_input[static_cast<size_t>(Input::Fire)]){
 
-    m_gravity = 0.000005;
+    m_gravity = 0.0005;
 
     if(m_translation.y < 0.5){
       m_gravitySpeed += m_gravity;
@@ -176,30 +176,30 @@ void Flappy::update(const GameData &gameData) {
 
     if(m_translation.y >= 0.5){
       m_translation.y = 0.5;
-      m_speedY = 0.0f;
-      m_gravitySpeed = 0.0f;
+      m_speedY = 0.2f;
+      m_gravitySpeed = 0.1f;
     }
 
     if(m_translation.y <= m_init.y){
       m_translation.y = m_init.y;
-      m_gravitySpeed = 0.0f;
+      m_gravitySpeed = 0.1f;
     }
 
 
   }else{
     if(m_translation.y >= 0.5){
       m_translation.y = 0.5;
-      m_speedY = 0.0f;
-      m_gravitySpeed = 0.0f;
+      m_speedY = 0.2f;
+      m_gravitySpeed = 0.1f;
     }
-    m_gravity = -0.0000005;
+    m_gravity = -0.00005;
     if(m_translation.y > m_init.y){
       m_gravitySpeed += m_gravity;
       m_translation.y += m_speedY + m_gravitySpeed;
     }
     if(m_translation.y <= m_init.y){
       m_translation.y = m_init.y;
-      m_gravitySpeed = 0.0f;
+      m_gravitySpeed = 0.1f;
     }
   }
 
